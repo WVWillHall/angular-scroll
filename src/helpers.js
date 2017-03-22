@@ -50,7 +50,7 @@ angular.module('duScroll.scrollHelpers', ['duScroll.requestAnimation'])
     var cancelScrollAnimation = function($event) {
       if (!$event || (progress && $event.which > 0)) {
         if(duScrollCancelOnEvents) {
-          el.unbind(duScrollCancelOnEvents, cancelScrollAnimation);
+          el.off(duScrollCancelOnEvents, cancelScrollAnimation);
         }
         cancelAnimation(scrollAnimation);
         deferred.reject();
@@ -87,7 +87,7 @@ angular.module('duScroll.scrollHelpers', ['duScroll.requestAnimation'])
         scrollAnimation = requestAnimation(animationStep);
       } else {
         if(duScrollCancelOnEvents) {
-          el.unbind(duScrollCancelOnEvents, cancelScrollAnimation);
+          el.off(duScrollCancelOnEvents, cancelScrollAnimation);
         }
         scrollAnimation = null;
         deferred.resolve();
@@ -98,7 +98,7 @@ angular.module('duScroll.scrollHelpers', ['duScroll.requestAnimation'])
     el.duScrollTo(startLeft, startTop);
 
     if(duScrollCancelOnEvents) {
-      el.bind(duScrollCancelOnEvents, cancelScrollAnimation);
+      el.on(duScrollCancelOnEvents, cancelScrollAnimation);
     }
 
     scrollAnimation = requestAnimation(animationStep);
